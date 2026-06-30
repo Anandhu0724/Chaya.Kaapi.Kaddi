@@ -1,0 +1,6 @@
+{
+  "name": "Golden Bakery",
+  "description": "Premium, modern single-page local business website for Golden Bakery in Mlamala, Vandiperiyar, highlighting fresh daily drinks, snacks, and bakery specials.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

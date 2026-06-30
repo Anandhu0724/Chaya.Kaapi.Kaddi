@@ -1,0 +1,181 @@
+import { MenuItem, LocationInfo } from './types';
+
+export const MENU_ITEMS: MenuItem[] = [
+  {
+    id: 'special-tea',
+    name: 'Special Cardamom Tea',
+    category: 'drinks',
+    price: 12,
+    description: 'Steaming, frothy single chai slow-brewed and infused with fresh crushed ginger and green cardamom, pulled with fresh milk for a thick, velvety cup.',
+    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80',
+    tag: 'Fresh Brewed',
+    isVegetarian: true,
+    ingredients: ['Green Cardamom', 'Fresh Ginger', 'Full Cream Milk', 'Assam Tea Dust'],
+    pairing: 'Layered Egg & Veg Puffs',
+    sweetness: 2
+  },
+  {
+    id: 'filter-coffee',
+    name: 'Filter Coffee',
+    category: 'drinks',
+    price: 15,
+    description: 'Bold, aromatic, double-filtered South Indian brew made from premium chicory-coffee beans, frothed high with creamy hot milk.',
+    image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80',
+    tag: 'Local Favorite',
+    isVegetarian: true,
+    ingredients: ['Chicory Coffee', 'Creamy Milk', 'Pure Sugar'],
+    pairing: 'Uzhunnu Vada',
+    sweetness: 1
+  },
+  {
+    id: 'uzhunnu-vada',
+    name: 'Uzhunnu Vada',
+    category: 'snacks',
+    price: 15,
+    description: 'Fluffy, savory black lentil donuts with crispy, golden ridges, infused with green chilies, minced ginger, and curry leaves.',
+    image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
+    tag: 'Crispy & Hot',
+    isVegetarian: true,
+    ingredients: ['Premium Urad Dal', 'Green Chilies', 'Fresh Curry Leaves', 'Ginger'],
+    pairing: 'Special Cardamom Tea',
+    spicyLevel: 1
+  },
+  {
+    id: 'paruppu-vada',
+    name: 'Paruppu Vada',
+    category: 'snacks',
+    price: 15,
+    description: 'Crunchy, coarse-ground dal patties seasoned with fresh shallots, curry leaves, and spices, golden-fried for the ultimate afternoon crispiness.',
+    image: 'https://images.unsplash.com/photo-1547058886-af77813becc5?auto=format&fit=crop&w=800&q=80',
+    tag: 'Crispy & Hot',
+    isVegetarian: true,
+    ingredients: ['Chana Dal', 'Chopped Shallots', 'Dry Red Chilies', 'Curry Leaves'],
+    pairing: 'Special Cardamom Tea',
+    spicyLevel: 2
+  },
+  {
+    id: 'onion-samosa',
+    name: 'Crispy Onion Samosa',
+    category: 'snacks',
+    price: 15,
+    description: 'Paper-thin, golden flaky triangles stuffed with a spicy onion, green chili, and aromatic curry leaf sauté. Served piping hot.',
+    image: 'https://images.unsplash.com/photo-1601050690597-df056fb4ce78?auto=format&fit=crop&w=800&q=80',
+    tag: 'Local Favorite',
+    isVegetarian: true,
+    ingredients: ['Sautéed Red Onions', 'Crispy Phyllo Wrap', 'Green Chili', 'Fennel Seeds'],
+    pairing: 'Filter Coffee',
+    spicyLevel: 2
+  },
+  {
+    id: 'unniyappam',
+    name: 'Sweet Unniyappam',
+    category: 'snacks',
+    price: 15,
+    description: 'Deep-fried, sponge-soft sweet dessert rounds made from fresh rice flour, organic dark jaggery, crushed bananas, roasted coconut pieces, and pure cardamom.',
+    image: 'https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=800&q=80',
+    tag: 'Sweet Delight',
+    isVegetarian: true,
+    ingredients: ['Rice Flour', 'Dark Palm Jaggery', 'Organic Bananas', 'Roasted Coconut Ghee'],
+    pairing: 'Filter Coffee',
+    sweetness: 3
+  },
+  {
+    id: 'masala-bonda',
+    name: 'Malabar Potato Bonda',
+    category: 'snacks',
+    price: 15,
+    description: 'Spiced mashed potato balls seasoned with mustard seeds, minced ginger, curry leaves, and green chilies, dipped in gram flour batter and golden fried.',
+    image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
+    tag: 'Spicy Bite',
+    isVegetarian: true,
+    ingredients: ['Mashed Potato', 'Besan Batter', 'Mustard Seeds', 'Malabar Spices'],
+    pairing: 'Special Cardamom Tea',
+    spicyLevel: 2
+  },
+  {
+    id: 'chicken-cutlet',
+    name: 'Kerala Chicken Cutlet',
+    category: 'snacks',
+    price: 20,
+    description: 'Fragrant, slow-cooked shredded chicken breasts and soft potatoes seasoned with fennel, ginger, and curry leaves, rolled in breadcrumbs and deep-fried.',
+    image: 'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80',
+    tag: 'Crispy & Hot',
+    ingredients: ['Shredded Chicken Breast', 'Fennel Powder', 'Toasted Breadcrumbs', 'Minced Ginger'],
+    pairing: 'Special Cardamom Tea',
+    spicyLevel: 2
+  },
+  {
+    id: 'kozhukkatta',
+    name: 'Sweet Kozhukkatta',
+    category: 'snacks',
+    price: 15,
+    description: 'Fragrant steamed rice-flour dumplings stuffed with a rich, traditional combination of grated coconut, dark palm sugar/jaggery, and crushed cardamoms.',
+    image: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=800&q=80',
+    tag: 'Healthy Sweet',
+    isVegetarian: true,
+    ingredients: ['Rice Flour Shell', 'Grated Coconut', 'Palm Jaggery', 'Cardamom Seeds'],
+    pairing: 'Filter Coffee',
+    sweetness: 3
+  },
+  {
+    id: 'pazham-pori',
+    name: 'Yethaka Poli / Pazham Pori',
+    category: 'snacks',
+    price: 15,
+    description: 'Sweet, ripe local plantain fritters fried to a rich golden-yellow in a light, cardamom-scented crispy coating.',
+    image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80',
+    tag: 'Sweet Delight',
+    isVegetarian: true,
+    ingredients: ['Ripe Local Plantains', 'All-Purpose Flour', 'Cardamom Essence', 'Pinch of Turmeric'],
+    pairing: 'Special Cardamom Tea',
+    sweetness: 2
+  },
+  {
+    id: 'baji',
+    name: 'Live Baji Varieties',
+    category: 'snacks',
+    price: 15,
+    description: 'Hot, spicy chili and potato fritters dipped in seasoned gram flour batter and fried live right at our griddle.',
+    image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80',
+    tag: 'Spicy Bite',
+    isVegetarian: true,
+    ingredients: ['Long Hot Chilies', 'Thin Potato Slices', 'Spiced Chickpea Batter'],
+    pairing: 'Special Cardamom Tea',
+    spicyLevel: 3
+  },
+  {
+    id: 'layered-puffs',
+    name: 'Layered Egg & Veg Puffs',
+    category: 'bakery',
+    price: 20,
+    description: 'Ultra-flaky, multi-layered golden pastry stuffed with a rich, caramelized egg masala blend or savory spiced garden vegetables.',
+    image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=800&q=80',
+    tag: 'Signature Bake',
+    isVegetarian: false,
+    ingredients: ['Flaky Pastry Layers', 'Caramelized Onion Gravy', 'Boiled Egg / Mixed Veggies'],
+    pairing: 'Special Cardamom Tea',
+    spicyLevel: 1
+  },
+  {
+    id: 'veg-puffs',
+    name: 'Veg Puffs',
+    category: 'bakery',
+    price: 20,
+    description: 'Crispy layered pastry envelope filled with a savory potato, carrot, and green pea masala cooked with traditional Malabar spices.',
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+    tag: 'Fresh Baked',
+    isVegetarian: true,
+    ingredients: ['Puff Pastry Layers', 'Mashed Potato & Green Peas', 'Traditional Garam Masala'],
+    pairing: 'Filter Coffee',
+    spicyLevel: 1
+  }
+];
+
+export const LOCATION_INFO: LocationInfo = {
+  name: 'Golden Bakery',
+  landmark: 'Near SN Public school, Mlamala',
+  address: 'Thengakal P.O, Vandiperiyar, Peermade Sub District, Idukki',
+  pincode: '685533',
+  hours: '1:00 PM - 8:30 PM Daily (Fresh hot batches arrive at 3:00 PM)',
+  phone: '+91 94474 12345'
+};
