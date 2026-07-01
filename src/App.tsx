@@ -113,7 +113,7 @@ export default function App() {
                 Our kitchen opens daily at <strong>1:00 PM</strong>. Fresh hot vadas and baked puffs are taken out of the griddle at exactly <strong>3:00 PM</strong>. We close at <strong>8:30 PM</strong>.
               </p>
               <p className="font-sans text-xs text-gold-400 font-semibold">
-                Tel: +91 94474 12345
+                Tel: +91 62351 60831
               </p>
             </div>
 

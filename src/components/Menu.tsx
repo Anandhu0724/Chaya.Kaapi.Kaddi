@@ -396,7 +396,7 @@ export default function Menu() {
                 </div>
 
                 <a
-                  href="tel:+919447412345"
+                  href="tel:+916235160831"
                   className="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-charcoal-800 font-sans font-bold text-sm transition-all duration-300 cursor-pointer shadow-md active:scale-95 group"
                 >
                   <span>Order via Phone</span>

@@ -103,12 +103,14 @@ export default function Header({ onOpenPreOrder }: HeaderProps) {
 
             {/* Action Button & Hamburger */}
             <div className="flex items-center space-x-3">
-              <button
-                onClick={onOpenPreOrder}
+              <a
+                href="https://wa.me/916235160831?text=Hi%20Golden%20Bakery,%20I'd%20like%20to%20inquire%20about%20today's%20fresh%20snacks!"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hidden lg:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-charcoal-900 text-white font-sans font-bold text-xs hover:bg-charcoal-800 hover:scale-105 transition-all duration-300 shadow-sm border border-white/10 hover:border-gold-500 cursor-pointer active:scale-95"
               >
                 Bulk Inquiry
-              </button>
+              </a>
 
               <button
                 onClick={() => scrollToSection('menu')}
@@ -190,16 +192,16 @@ export default function Header({ onOpenPreOrder }: HeaderProps) {
               >
                 Location & Hours
               </button>
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                  if (onOpenPreOrder) onOpenPreOrder();
-                }}
+              <a
+                href="https://wa.me/916235160831?text=Hi%20Golden%20Bakery,%20I'd%20like%20to%20inquire%20about%20today's%20fresh%20snacks!"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
                 className="font-display font-semibold text-xl text-left text-gold-600 hover:text-gold-500 py-2 border-b border-cream-200 flex items-center justify-between"
               >
                 <span>Bulk Pre-order</span>
                 <span className="w-2.5 h-2.5 rounded-full bg-gold-500 animate-ping"></span>
-              </button>
+              </a>
             </div>
           </div>
 

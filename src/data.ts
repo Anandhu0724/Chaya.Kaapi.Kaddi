@@ -207,5 +207,5 @@ export const LOCATION_INFO: LocationInfo = {
   address: 'Thengakal P.O, Vandiperiyar, Peermade Sub District, Idukki',
   pincode: '685533',
   hours: '1:00 PM - 8:30 PM Daily (Fresh hot batches arrive at 3:00 PM)',
-  phone: '+91 94474 12345'
+  phone: '+91 62351 60831'
 };

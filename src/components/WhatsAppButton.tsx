@@ -25,11 +25,7 @@ export default function WhatsAppButton() {
     }
   }, [showTooltip]);
 
-  const whatsappNumber = '919447412345'; // Matching footer phone sequence: +91 94474 12345
-  const preFilledMessage = encodeURIComponent(
-    'Hello Golden Bakery! I am visiting your website and would like to ask a quick question about your Special Tea, hot evening snacks, or bulk orders in Mlamala.'
-  );
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${preFilledMessage}`;
+  const whatsappUrl = "https://wa.me/916235160831?text=Hi%20Golden%20Bakery,%20I'd%20like%20to%20inquire%20about%20today's%20fresh%20snacks!";
 
   const handleButtonClick = () => {
     setHasInteracted(true);
@@ -40,9 +36,9 @@ export default function WhatsAppButton() {
 
   return (
     <div className="fixed bottom-6 left-6 z-40 flex items-end space-x-3 select-none pointer-events-auto">
-      {/* Tooltip speech bubble - Glassmorphic Dark Charcoal & Gold Premium Style */}
+      {/* Tooltip speech bubble - Glassmorphic White & Gold Premium Style */}
       <div
-        className={`bg-charcoal-900/95 backdrop-blur-xl text-white border border-white/10 shadow-[0_15px_40px_rgba(0,0,0,0.6)] px-5 py-4 rounded-2.5xl max-w-xs transition-all duration-500 ease-out flex items-start space-x-3 relative ${
+        className={`bg-white/70 backdrop-blur-md text-charcoal-800 border border-white/40 shadow-lg px-5 py-4 rounded-2.5xl max-w-xs transition-all duration-500 ease-out flex items-start space-x-3 relative ${
           showTooltip
             ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
             : 'opacity-0 translate-y-2 scale-90 pointer-events-none'
@@ -50,12 +46,12 @@ export default function WhatsAppButton() {
         style={{ transformOrigin: 'bottom left' }}
       >
         <div className="space-y-1">
-          <p className="font-display font-extrabold text-xs text-gold-400 tracking-wider uppercase flex items-center gap-1.5">
+          <p className="font-display font-extrabold text-xs text-gold-700 tracking-wider uppercase flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            Quick Question?
+            Quick question?
           </p>
-          <p className="font-sans text-[11.5px] text-cream-200/90 leading-relaxed font-medium">
-            Tap to chat on WhatsApp for hot snack batches, tea-time availability, or quick pickups in Mlamala!
+          <p className="font-sans text-[11.5px] text-charcoal-600 leading-relaxed font-medium">
+            Tap to message us directly for hot snacks availability or quick pickups!
           </p>
         </div>
         
@@ -66,14 +62,14 @@ export default function WhatsAppButton() {
             setShowTooltip(false);
             setHasInteracted(true);
           }}
-          className="text-white/40 hover:text-gold-400 transition-colors p-1 rounded-lg focus:outline-none cursor-pointer"
+          className="text-charcoal-400 hover:text-gold-600 transition-colors p-1 rounded-lg focus:outline-none cursor-pointer"
           aria-label="Dismiss tooltip"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Small pointer tail */}
-        <div className="absolute bottom-5 -left-1.5 w-3 h-3 bg-charcoal-900 border-l border-b border-white/10 rotate-45" />
+        <div className="absolute bottom-5 -left-1.5 w-3 h-3 bg-white/70 border-l border-b border-white/40 rotate-45" />
       </div>
 
       {/* Main Pulse Button */}

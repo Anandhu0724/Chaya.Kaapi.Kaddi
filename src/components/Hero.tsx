@@ -43,12 +43,9 @@ export default function Hero({ onOpenPreOrder }: HeroProps) {
           <div className="lg:col-span-7 space-y-8 text-left">
             
             {/* Top Badge */}
-            <div className="inline-flex items-center space-x-2 bg-gold-100/80 border border-gold-300/40 px-3 py-1.5 rounded-full shadow-sm animate-float">
-              <Sparkles className="w-4 h-4 text-gold-600 animate-pulse" />
-              <span className="font-sans font-semibold text-xs text-gold-800 tracking-wide uppercase">
-                THE AUTHENTIC TASTE OF MLAMALA HIGH RANGES
-              </span>
-            </div>
+            <span className="inline-block text-xs font-bold tracking-widest text-amber-700 bg-amber-50 border border-amber-200/60 px-3 py-1 rounded-full mb-4">
+              ✨ THE AUTHENTIC TASTE OF MLAMALA HIGH RANGES
+            </span>
 
             {/* Main Header Typographic Layout */}
             <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.05]">
@@ -77,14 +74,14 @@ export default function Hero({ onOpenPreOrder }: HeroProps) {
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1.5 transition-transform" />
               </button>
               
-              <button
-                onClick={() => scrollToSection('location')}
+              <a
+                href="tel:+916235160831"
                 className="inline-flex items-center justify-center px-7 py-4 rounded-2xl border-2 border-charcoal-200 bg-white/40 backdrop-blur-sm text-charcoal-800 font-sans font-bold text-base hover:border-gold-500 hover:bg-white hover:scale-105 hover:shadow-[0_0_15px_rgba(212,175,55,0.2),inset_0_0_10px_rgba(212,175,55,0.15)] transition-all duration-300 cursor-pointer active:scale-98"
                 id="hero-get-directions"
               >
                 <MapPin className="w-5 h-5 mr-2 text-gold-500" />
                 Get Directions
-              </button>
+              </a>
             </div>
 
             {/* Tertiary Bulk Order Trigger */}
@@ -125,22 +122,11 @@ export default function Hero({ onOpenPreOrder }: HeroProps) {
               {/* Product Visual Overlay */}
               <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden mb-5 bg-cream-100 shadow-inner">
                 {/* Ambient looping background video layer */}
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                <img
+                  src="/kerala-chai-steaming.webp"
+                  alt="Authentic South Indian hot tea glass"
                   className="w-full h-full object-cover"
-                >
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-hot-tea-into-a-cup-43183-large.mp4" type="video/mp4" />
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-tea-into-a-cup-32822-large.mp4" type="video/mp4" />
-                  {/* Fallback Unsplash Image */}
-                  <img
-                    src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80"
-                    alt="Hot Spiced Chai and Crispy Vadas of Golden Bakery"
-                    className="w-full h-full object-cover"
-                  />
-                </video>
+                />
 
                 {/* Ambient smoke/steam effects rising gently from the tea */}
                 <div className="absolute inset-0 pointer-events-none flex items-end justify-center pb-20">
