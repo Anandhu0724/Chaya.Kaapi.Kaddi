@@ -10,10 +10,15 @@ import {
   CheckCircle2, 
   TrendingUp,
   ChevronRight,
-  Sparkles
+  Sparkles,
+  Coffee,
+  UtensilsCrossed
 } from 'lucide-react';
 
+type MenuCategory = 'all' | 'drinks' | 'snacks' | 'bakery';
+
 export default function Menu() {
+  const [selectedCategory, setSelectedCategory] = useState<MenuCategory>('all');
   const [platter, setPlatter] = useState<Record<string, number>>({});
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
   const [revealRef, isRevealed] = useScrollReveal();
@@ -21,11 +26,17 @@ export default function Menu() {
 
   // Simulated content initialization / loading feedback
   useEffect(() => {
+    setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 450);
     return () => clearTimeout(timer);
-  }, []);
+  }, [selectedCategory]);
+
+  // Filter items based on active category selection
+  const filteredItems = selectedCategory === 'all'
+    ? MENU_ITEMS
+    : MENU_ITEMS.filter(item => item.category === selectedCategory);
 
   // Platter Builder Functions
   const addToPlatter = (itemId: string) => {
@@ -80,8 +91,8 @@ export default function Menu() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center space-x-1.5 bg-gold-100 text-gold-800 px-3.5 py-1.5 rounded-full text-xs font-bold font-sans uppercase tracking-widest shadow-sm">
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+          <div className="inline-flex items-center space-x-1.5 bg-gold-100 text-gold-800 px-3.5 py-1.5 rounded-full text-xs font-bold font-sans uppercase tracking-widest shadow-sm animate-float">
             <Flame className="w-3.5 h-3.5 fill-current animate-pulse text-gold-600" />
             <span>Afternoon Batch</span>
           </div>
@@ -94,10 +105,33 @@ export default function Menu() {
           </p>
         </div>
 
-        {/* Dynamic CSS Grid Menu Displays - Optimized for 3 items side-by-side */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {/* Categories Tab Toggles */}
+        <div className="bg-white/30 backdrop-blur-md p-2 rounded-2xl border border-white/40 flex flex-wrap justify-center gap-2 sm:gap-3 max-w-3xl mx-auto mb-12 shadow-sm" id="menu-category-tabs">
+          {[
+            { id: 'all', label: 'All Items', icon: <UtensilsCrossed className="w-4 h-4" /> },
+            { id: 'drinks', label: 'Drinks', icon: <Coffee className="w-4 h-4" /> },
+            { id: 'snacks', label: 'Snacks & Vadas', icon: <Flame className="w-4 h-4" /> },
+            { id: 'bakery', label: 'Bakery Specials', icon: <Sparkles className="w-4 h-4" /> }
+          ].map(category => (
+            <button
+              key={category.id}
+              onClick={() => setSelectedCategory(category.id as MenuCategory)}
+              className={`inline-flex items-center space-x-2 px-5 py-3 rounded-xl font-sans font-bold text-sm transition-all duration-300 cursor-pointer active:scale-95 hover:scale-105 hover:shadow-[0_8px_20px_-4px_rgba(212,175,55,0.25),inset_0_0_12px_rgba(212,175,55,0.4)] hover:border-gold-400 ${
+                selectedCategory === category.id
+                  ? 'bg-gold-500 text-charcoal-900 border border-gold-400 shadow-md transform -translate-y-0.5'
+                  : 'bg-white/40 backdrop-blur-sm border border-white/40 text-charcoal-600 hover:bg-gold-500 hover:text-charcoal-900'
+              }`}
+            >
+              {category.icon}
+              <span>{category.label}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Dynamic CSS Grid Menu Displays */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
           {isLoading ? (
-            Array.from({ length: 3 }).map((_, idx) => (
+            Array.from({ length: selectedCategory === 'all' ? 8 : 4 }).map((_, idx) => (
               <div
                 key={`menu-skeleton-${idx}`}
                 className="bg-white/50 backdrop-blur-md border border-white/60 rounded-3xl overflow-hidden p-2 flex flex-col justify-between space-y-4 animate-pulse h-[400px]"
@@ -116,20 +150,20 @@ export default function Menu() {
               </div>
             ))
           ) : (
-            MENU_ITEMS.map((item, index) => {
+            filteredItems.map((item, index) => {
               const platterCount = platter[item.id] || 0;
               return (
                 <div
                   key={item.id}
                   style={{
-                    animationDelay: `${index * 80}ms`,
+                    animationDelay: `${index * 50}ms`,
                     animationFillMode: 'both'
                   }}
-                  className="animate-fade-in-up group relative bg-white/60 backdrop-blur-md border border-white/80 hover:bg-white/95 hover:border-gold-300/40 rounded-3xl overflow-hidden shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:shadow-xl flex flex-col justify-between"
+                  className="animate-fade-in-up group relative bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] hover:bg-white/90 rounded-3xl overflow-hidden transition-all duration-500 ease-out transform hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_20px_40px_0_rgba(212,175,55,0.15)] flex flex-col justify-between"
                   id={`menu-card-${item.id}`}
                 >
                   {/* Image and Badge Area */}
-                  <div className="relative h-56 w-full overflow-hidden bg-cream-100/40">
+                  <div className="relative h-48 w-full overflow-hidden bg-cream-100/40">
                     <img
                       src={item.image}
                       alt={item.name}
@@ -138,7 +172,7 @@ export default function Menu() {
                     />
 
                     {/* Subtle Steam Effect for Fresh Hot Items */}
-                    {(item.tag === 'Crispy & Hot' || item.tag === 'Sweet Delight' || item.tag === 'Signature Bake' || item.tag === 'Spicy Bite') && (
+                    {(item.tag === 'Crispy & Hot' || item.tag === 'Sweet Delight' || item.tag === 'Signature Bake' || item.tag === 'Spicy Bite' || item.tag === 'Fresh Brewed') && (
                       <div className="absolute inset-x-0 bottom-0 pointer-events-none flex items-end justify-center pb-6 opacity-30 group-hover:opacity-75 transition-opacity z-10">
                         <div className="flex space-x-2 select-none">
                           <div className="w-0.5 bg-gradient-to-t from-white/30 to-transparent rounded-full h-12 steam-particle filter blur-[1.5px]" style={{ animationDelay: '0s' }} />
@@ -179,9 +213,9 @@ export default function Menu() {
                   </div>
 
                   {/* Content Area */}
-                  <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
+                  <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
                     <div className="space-y-3">
-                      <h3 className="font-display font-bold text-xl text-charcoal-800 group-hover:text-gold-600 transition-colors">
+                      <h3 className="font-display font-bold text-lg text-charcoal-800 group-hover:text-gold-600 transition-colors">
                         {item.name}
                       </h3>
                       <p className="font-sans text-xs text-charcoal-500 leading-relaxed min-h-[44px]">
@@ -190,11 +224,11 @@ export default function Menu() {
 
                       {/* Food Specific Specs */}
                       {item.ingredients && item.ingredients.length > 0 && (
-                        <div className="space-y-1">
+                        <div className="space-y-1 text-left">
                           <p className="text-[9px] uppercase font-bold tracking-wider text-charcoal-400">Ingredients</p>
                           <div className="flex flex-wrap gap-1">
                             {item.ingredients.map((ing, i) => (
-                              <span key={i} className="text-[9.5px] bg-amber-50/80 text-amber-900 font-sans font-medium px-2 py-0.5 rounded-md border border-amber-200/40">
+                              <span key={i} className="text-[9px] bg-amber-50/80 text-amber-900 font-sans font-medium px-2 py-0.5 rounded-md border border-amber-200/40">
                                 {ing}
                               </span>
                             ))}
@@ -203,7 +237,7 @@ export default function Menu() {
                       )}
 
                       {/* Flavor indicators and pairings */}
-                      <div className="pt-1 flex flex-col gap-1.5">
+                      <div className="pt-1 flex flex-col gap-1.5 text-left">
                         {(item.spicyLevel !== undefined || item.sweetness !== undefined) && (
                           <div className="flex items-center space-x-3 text-[10.5px]">
                             {item.spicyLevel !== undefined && (
@@ -230,7 +264,7 @@ export default function Menu() {
                         )}
 
                         {item.pairing && (
-                          <div className="text-[10.5px] text-emerald-800 bg-emerald-50/50 hover:bg-emerald-50 border border-emerald-500/10 py-1 px-2.5 rounded-xl flex items-center gap-1.5 transition-colors">
+                          <div className="text-[10px] text-emerald-800 bg-emerald-50/50 hover:bg-emerald-50 border border-emerald-500/10 py-1 px-2 rounded-xl flex items-center gap-1.5 transition-colors">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                             <span className="font-bold shrink-0">Best Pair:</span>
                             <span className="font-sans font-medium truncate">{item.pairing}</span>
@@ -252,7 +286,7 @@ export default function Menu() {
                         <div className="flex items-center space-x-2 bg-gold-100 border border-gold-200 rounded-xl p-1 animate-scale-up">
                           <button
                             onClick={() => removeFromPlatter(item.id)}
-                            className="w-7 h-7 rounded-lg bg-white text-charcoal-800 flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors cursor-pointer focus:outline-none"
+                            className="w-7 h-7 rounded-lg bg-white text-charcoal-800 flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors cursor-pointer focus:outline-none active:scale-90"
                             aria-label="Remove item"
                           >
                             <Minus className="w-3.5 h-3.5" />
@@ -262,7 +296,7 @@ export default function Menu() {
                           </span>
                           <button
                             onClick={() => addToPlatter(item.id)}
-                            className="w-7 h-7 rounded-lg bg-white text-charcoal-800 flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors cursor-pointer focus:outline-none"
+                            className="w-7 h-7 rounded-lg bg-white text-charcoal-800 flex items-center justify-center hover:bg-gold-500 hover:text-white transition-colors cursor-pointer focus:outline-none active:scale-90"
                             aria-label="Add item"
                           >
                             <Plus className="w-3.5 h-3.5" />
@@ -271,7 +305,7 @@ export default function Menu() {
                       ) : (
                         <button
                           onClick={() => addToPlatter(item.id)}
-                          className="inline-flex items-center space-x-1.5 px-4.5 py-2.5 rounded-xl bg-cream-50 border border-cream-200 text-charcoal-800 font-sans font-semibold text-xs hover:border-gold-500 hover:bg-gold-50 hover:text-gold-700 transition-all cursor-pointer focus:outline-none"
+                          className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-cream-50 border border-cream-200 text-charcoal-800 font-sans font-semibold text-xs hover:border-gold-500 hover:bg-gold-50 hover:text-gold-700 transition-all duration-200 active:scale-95 active:rotate-1 cursor-pointer focus:outline-none"
                         >
                           <Plus className="w-3.5 h-3.5" />
                           <span>Add To Platter</span>

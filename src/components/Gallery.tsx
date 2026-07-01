@@ -12,46 +12,39 @@ interface GalleryItem {
 
 const GALLERY_ITEMS: GalleryItem[] = [
   {
-    id: 'g-tea',
-    title: 'Pulled Special Tea',
-    category: 'products',
-    image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80',
-    description: 'Our signatures: piping-hot pulled tea frothed high, blended with crushed mountain ginger.'
-  },
-  {
-    id: 'g-vada',
-    title: 'Fresh Crispy Vadas',
-    category: 'products',
-    image: 'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80',
-    description: 'Black gram and coarse lentil vadas fried fresh at exactly 3:00 PM daily.'
-  },
-  {
-    id: 'g-puffs',
-    title: 'Flaky Egg & Veg Puffs',
-    category: 'products',
-    image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&w=800&q=80',
-    description: 'Hundreds of golden, buttery, flaky layers baked with aromatic spiced masala.'
-  },
-  {
-    id: 'g-interior',
-    title: 'Cozy Mountain Corner',
-    category: 'interior',
-    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80',
-    description: 'Where Mlamala locals and travelers stop to rest, recharge, and talk over tea.'
-  },
-  {
-    id: 'g-coffee',
-    title: 'Traditional Filter Coffee',
-    category: 'products',
-    image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80',
-    description: 'Double-filter chicory coffee frothed in traditional brass tumbler sets.'
-  },
-  {
-    id: 'g-brewing',
-    title: 'Art of Tea Pulling',
+    id: 'g-tea-pouring',
+    title: 'Traditional Tea Pulling',
     category: 'process',
-    image: 'https://images.unsplash.com/photo-1598062548091-a6fb6ac08299?auto=format&fit=crop&w=800&q=80',
-    description: 'The spectacular high pull, mixing fresh dairy milk and spices for robust body.'
+    image: '/kerala-tea-stall-chai-pouring.webp',
+    description: 'The theatrical high pull of our spiced ginger tea, frothed to order.'
+  },
+  {
+    id: 'g-vada-texture',
+    title: 'Crispy Uzhunnu Vada',
+    category: 'products',
+    image: '/crispy-uzhunnu-vada-texture.webp',
+    description: 'Gourmet black-lentil vadas featuring hot, crispy ridges, prepared fresh daily at 3:00 PM.'
+  },
+  {
+    id: 'g-puffs-interior',
+    title: 'Fresh Baked Egg Puffs',
+    category: 'products',
+    image: '/flaky-bakery-egg-puffs-interior.webp',
+    description: 'Perfect, buttery, flaky pastry layers filled with rich caramelized egg masala.'
+  },
+  {
+    id: 'g-pazham-pori',
+    title: 'Golden yellow Pazham Pori',
+    category: 'products',
+    image: '/golden-yellow-pazham-pori.webp',
+    description: 'Sweet, perfectly ripe local plantains double-dipped and griddle fried to crisp perfection.'
+  },
+  {
+    id: 'g-ulli-vada',
+    title: 'Hot Ulli Vada Kerala Snacks',
+    category: 'products',
+    image: '/hot-ulli-vada-kerala-snacks.webp',
+    description: 'Fragrant golden ribbon-fried onion patties loaded with fresh green chilies and ginger.'
   }
 ];
 
