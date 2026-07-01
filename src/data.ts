@@ -123,12 +123,12 @@ export const MENU_ITEMS: MenuItem[] = [
     category: 'snacks',
     price: 15,
     description: 'Sweet, ripe local plantain fritters fried to a rich golden-yellow in a light, cardamom-scented crispy coating.',
-    image: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=800&q=80',
     tag: 'Sweet Delight',
     isVegetarian: true,
     ingredients: ['Ripe Local Plantains', 'All-Purpose Flour', 'Cardamom Essence', 'Pinch of Turmeric'],
     pairing: 'Special Cardamom Tea',
-    sweetness: 2
+    sweetness: 3
   },
   {
     id: 'baji',

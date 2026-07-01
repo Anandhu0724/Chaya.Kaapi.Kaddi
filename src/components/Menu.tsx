@@ -179,7 +179,7 @@ export default function Menu() {
                     animationDelay: `${index * 60}ms`,
                     animationFillMode: 'both'
                   }}
-                  className="animate-fade-in-up group relative bg-white/50 backdrop-blur-md border border-white/60 hover:bg-white/85 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                  className="animate-fade-in-up group relative bg-white/50 backdrop-blur-md border border-white/60 hover:bg-white/90 hover:border-gold-300/30 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.015] transition-all duration-300 ease-out flex flex-col justify-between"
                   id={`menu-card-${item.id}`}
                 >
                   {/* Image and Badge Area */}
@@ -275,7 +275,7 @@ export default function Menu() {
                                 <span className="font-semibold text-charcoal-500">Sweetness:</span>
                                 <span className="flex">
                                   {Array.from({ length: 3 }).map((_, i) => (
-                                    <span key={i} className={`text-xs ${i < item.sweetness! ? 'opacity-100 scale-110' : 'opacity-25 grayscale'}`} title={`${item.sweetness}/3 Sweet`}>🍯</span>
+                                    <span key={i} className={`text-xs ${i < item.sweetness! ? 'opacity-100 scale-110' : 'opacity-25 grayscale'}`} title={`${item.sweetness}/3 Sweet`}>🔥</span>
                                   ))}
                                 </span>
                               </div>
