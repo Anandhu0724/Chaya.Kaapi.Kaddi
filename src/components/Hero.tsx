@@ -46,18 +46,17 @@ export default function Hero({ onOpenPreOrder }: HeroProps) {
             <div className="inline-flex items-center space-x-2 bg-gold-100/80 border border-gold-300/40 px-3 py-1.5 rounded-full shadow-sm animate-float">
               <Sparkles className="w-4 h-4 text-gold-600 animate-pulse" />
               <span className="font-sans font-semibold text-xs text-gold-800 tracking-wide uppercase">
-                The Authentic Taste of Mlamala High Ranges
+                THE AUTHENTIC TASTE OF MLAMALA HIGH RANGES
               </span>
             </div>
 
             {/* Main Header Typographic Layout */}
-            <h1 className="font-display font-black text-5xl sm:text-6xl md:text-7xl tracking-tight leading-[1.05]">
-              <span className="text-caramel">Chaya</span>
-              <span className="text-gold-500 mx-1 sm:mx-2">.</span>
-              <span className="text-charcoal-900">Kaapi</span>
-              <span className="text-gold-500 mx-1 sm:mx-2">.</span>
+            <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-[1.05]">
+              <span className="text-caramel block">Hot Chai,</span>
+              <span className="text-charcoal-900">Perfect Coffee</span>
+              <span className="text-charcoal-900"> & </span>
               <span className="text-gold-600 relative inline-block">
-                Kaddi
+                Crispy Kadiyan
                 <span className="absolute left-0 bottom-2 w-full h-3 bg-gold-200/50 -z-10 rounded-full"></span>
               </span>
             </h1>

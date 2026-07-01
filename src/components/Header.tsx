@@ -40,8 +40,8 @@ export default function Header({ onOpenPreOrder }: HeaderProps) {
         id="navbar"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-charcoal-950/85 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.6)] border-b border-white/10 py-3'
-            : 'bg-charcoal-950/45 backdrop-blur-md border-b border-white/5 py-5'
+            ? 'bg-cream-50/90 backdrop-blur-xl shadow-md border-b border-cream-250/30 py-3'
+            : 'bg-cream-50/40 backdrop-blur-md border-b border-cream-200/20 py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,11 +52,11 @@ export default function Header({ onOpenPreOrder }: HeaderProps) {
               className="flex items-center space-x-2.5 group focus:outline-none"
               id="logo-button"
             >
-              <div className="w-10 h-10 rounded-xl bg-charcoal-900/90 border border-white/10 flex items-center justify-center text-gold-400 shadow-md group-hover:bg-gold-500 group-hover:text-charcoal-900 transition-all duration-300">
+              <div className="w-10 h-10 rounded-xl bg-charcoal-900 border border-charcoal-800 flex items-center justify-center text-gold-400 shadow-md group-hover:bg-gold-500 group-hover:text-charcoal-900 transition-all duration-300">
                 <Coffee className="w-5.5 h-5.5" />
               </div>
-              <span className="font-display font-bold text-xl tracking-tight text-white group-hover:text-gold-400 transition-colors duration-300">
-                Golden <span className="text-gold-500 group-hover:text-white">Bakery</span>
+              <span className="font-display font-bold text-xl tracking-tight text-charcoal-800 group-hover:text-gold-600 transition-colors duration-300">
+                Golden <span className="text-gold-500 group-hover:text-charcoal-800">Bakery</span>
               </span>
             </button>
 
@@ -64,38 +64,38 @@ export default function Header({ onOpenPreOrder }: HeaderProps) {
             <nav className="hidden md:flex items-center space-x-6">
               <button
                 onClick={() => scrollToSection('home')}
-                className="font-sans font-medium text-sm text-cream-100 hover:text-gold-400 transition-colors cursor-pointer"
+                className="font-sans font-semibold text-sm text-charcoal-700 hover:text-gold-600 transition-colors cursor-pointer"
               >
                 Home
               </button>
               <button
                 onClick={() => scrollToSection('menu')}
-                className="font-sans font-medium text-sm text-cream-100 hover:text-gold-400 transition-colors cursor-pointer"
+                className="font-sans font-semibold text-sm text-charcoal-700 hover:text-gold-600 transition-colors cursor-pointer"
               >
                 Our Menu
               </button>
               <button
                 onClick={() => scrollToSection('gallery')}
-                className="font-sans font-medium text-sm text-cream-100 hover:text-gold-400 transition-colors cursor-pointer"
+                className="font-sans font-semibold text-sm text-charcoal-700 hover:text-gold-600 transition-colors cursor-pointer"
               >
                 Gallery
               </button>
               <button
                 onClick={() => scrollToSection('testimonials')}
-                className="font-sans font-medium text-sm text-cream-100 hover:text-gold-400 transition-colors cursor-pointer"
+                className="font-sans font-semibold text-sm text-charcoal-700 hover:text-gold-600 transition-colors cursor-pointer"
               >
                 Reviews
               </button>
               <button
                 onClick={() => scrollToSection('platter-builder')}
-                className="font-sans font-medium text-sm text-cream-100 hover:text-gold-400 transition-colors cursor-pointer flex items-center gap-1.5"
+                className="font-sans font-semibold text-sm text-charcoal-700 hover:text-gold-600 transition-colors cursor-pointer flex items-center gap-1.5"
               >
                 <span>Platter Builder</span>
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span>
               </button>
               <button
                 onClick={() => scrollToSection('location')}
-                className="font-sans font-medium text-sm text-cream-100 hover:text-gold-400 transition-colors cursor-pointer"
+                className="font-sans font-semibold text-sm text-charcoal-700 hover:text-gold-600 transition-colors cursor-pointer"
               >
                 Location & Hours
               </button>
@@ -105,14 +105,14 @@ export default function Header({ onOpenPreOrder }: HeaderProps) {
             <div className="flex items-center space-x-3">
               <button
                 onClick={onOpenPreOrder}
-                className="hidden lg:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-gold-500 text-charcoal-900 font-sans font-bold text-xs hover:bg-gold-600 hover:scale-105 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all duration-300 shadow-sm cursor-pointer active:scale-95"
+                className="hidden lg:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-charcoal-900 text-white font-sans font-bold text-xs hover:bg-charcoal-800 hover:scale-105 transition-all duration-300 shadow-sm border border-white/10 hover:border-gold-500 cursor-pointer active:scale-95"
               >
                 Bulk Inquiry
               </button>
 
               <button
                 onClick={() => scrollToSection('menu')}
-                className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl border border-gold-500 bg-gold-500 text-charcoal-800 font-sans font-semibold text-sm hover:bg-transparent hover:text-gold-600 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer active:scale-95"
+                className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gold-500 text-charcoal-900 font-sans font-bold text-sm hover:bg-gold-600 hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer active:scale-95 border border-gold-400/30"
                 id="cta-view-menu"
               >
                 View Menu
@@ -120,7 +120,7 @@ export default function Header({ onOpenPreOrder }: HeaderProps) {
 
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-xl hover:bg-cream-100 transition-colors text-charcoal-800 focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                className="md:hidden p-2 rounded-xl hover:bg-cream-200 transition-colors text-charcoal-800 focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                 aria-label="Toggle Menu"
                 id="hamburger-button"
               >

@@ -125,7 +125,7 @@ export default function Menu() {
                     animationDelay: `${index * 80}ms`,
                     animationFillMode: 'both'
                   }}
-                  className="animate-fade-in-up group relative bg-white/60 backdrop-blur-md border border-white/80 hover:bg-white/95 hover:border-gold-300/40 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] transition-all duration-500 ease-out flex flex-col justify-between"
+                  className="animate-fade-in-up group relative bg-white/60 backdrop-blur-md border border-white/80 hover:bg-white/95 hover:border-gold-300/40 rounded-3xl overflow-hidden shadow-md transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:shadow-xl flex flex-col justify-between"
                   id={`menu-card-${item.id}`}
                 >
                   {/* Image and Badge Area */}
