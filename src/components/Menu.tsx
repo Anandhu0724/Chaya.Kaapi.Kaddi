@@ -1,24 +1,19 @@
 import { useState, useEffect } from 'react';
 import { MENU_ITEMS } from '../data';
-import { MenuItem, MenuCategory } from '../types';
+import { MenuItem } from '../types';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { 
-  Coffee, 
-  UtensilsCrossed, 
-  Sparkles, 
   Plus, 
   Minus, 
   ShoppingBag, 
   Flame, 
   CheckCircle2, 
-  HelpCircle,
   TrendingUp,
-  MapPin,
-  ChevronRight
+  ChevronRight,
+  Sparkles
 } from 'lucide-react';
 
 export default function Menu() {
-  const [selectedCategory, setSelectedCategory] = useState<MenuCategory>('all');
   const [platter, setPlatter] = useState<Record<string, number>>({});
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
   const [revealRef, isRevealed] = useScrollReveal();
@@ -26,17 +21,11 @@ export default function Menu() {
 
   // Simulated content initialization / loading feedback
   useEffect(() => {
-    setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 550);
+    }, 450);
     return () => clearTimeout(timer);
-  }, [selectedCategory]);
-
-  // Filter items based on active category selection
-  const filteredItems = selectedCategory === 'all'
-    ? MENU_ITEMS
-    : MENU_ITEMS.filter(item => item.category === selectedCategory);
+  }, []);
 
   // Platter Builder Functions
   const addToPlatter = (itemId: string) => {
@@ -77,84 +66,41 @@ export default function Menu() {
   const platterSubtotal = platterItems.reduce((acc, entry) => acc + entry.totalPrice, 0);
   const platterTotalCount = platterItems.reduce((acc, entry) => acc + entry.quantity, 0);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   const triggerCopyNotice = (itemName: string) => {
     setCopiedItem(itemName);
-    setTimeout(() => setCopiedItem(null), 1500);
+    setTimeout(() => setCopiedItem(null), 2000);
   };
 
   return (
     <section
       id="menu"
       ref={revealRef as any}
-      className={`py-20 bg-transparent relative reveal-hidden ${isRevealed ? 'reveal-visible' : ''}`}
+      className={`py-12 md:py-20 bg-transparent relative reveal-hidden ${isRevealed ? 'reveal-visible' : ''}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center space-x-1.5 bg-gold-100 text-gold-800 px-3 py-1 rounded-full text-xs font-bold font-sans uppercase tracking-widest">
-            <Flame className="w-3.5 h-3.5 fill-current animate-pulse" />
-            <span>Today's Batch</span>
+          <div className="inline-flex items-center space-x-1.5 bg-gold-100 text-gold-800 px-3.5 py-1.5 rounded-full text-xs font-bold font-sans uppercase tracking-widest shadow-sm">
+            <Flame className="w-3.5 h-3.5 fill-current animate-pulse text-gold-600" />
+            <span>Afternoon Batch</span>
           </div>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-charcoal-800 tracking-tight">
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl text-charcoal-800 tracking-tight leading-tight">
             Our Afternoon Menu
           </h2>
           <div className="w-16 h-1 bg-gold-500 mx-auto rounded-full" />
           <p className="font-sans text-charcoal-600 text-sm sm:text-base leading-relaxed">
-            Every bite is prepared fresh using pure ingredients. Handcrafted at our griddle near SN Public school, Mlamala. Click categories to filter items instantly.
+            Every bite is prepared fresh using pure ingredients. Handcrafted at our griddle daily near SN Public school, Mlamala.
           </p>
         </div>
 
-        {/* Categories Tab Toggles */}
-        <div className="bg-white/40 backdrop-blur-md p-2 rounded-2xl border border-white/50 flex flex-wrap justify-center gap-2 sm:gap-3 max-w-3xl mx-auto mb-12 shadow-sm" id="menu-category-tabs">
-          {[
-            { id: 'all', label: 'All Items', icon: <UtensilsCrossed className="w-4 h-4" /> },
-            { id: 'drinks', label: 'Drinks', icon: <Coffee className="w-4 h-4" /> },
-            { id: 'snacks', label: 'Snacks & Vadas', icon: <Flame className="w-4 h-4" /> },
-            { id: 'bakery', label: 'Bakery Specials', icon: <Sparkles className="w-4 h-4" /> }
-          ].map(category => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id as MenuCategory)}
-              className={`inline-flex items-center space-x-2 px-5 py-3 rounded-xl font-sans font-bold text-sm transition-all duration-300 cursor-pointer active:scale-95 hover:scale-105 hover:shadow-[0_8px_20px_-4px_rgba(212,175,55,0.25),inset_0_0_12px_rgba(212,175,55,0.4)] hover:border-gold-400 ${
-                selectedCategory === category.id
-                  ? 'bg-gold-500 text-charcoal-900 border border-gold-400 shadow-md transform -translate-y-0.5'
-                  : 'bg-white/40 backdrop-blur-sm border border-white/40 text-charcoal-600 hover:bg-gold-500 hover:text-charcoal-900'
-              }`}
-            >
-              {category.icon}
-              <span>{category.label}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Dynamic CSS Grid Menu Displays */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+        {/* Dynamic CSS Grid Menu Displays - Optimized for 3 items side-by-side */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {isLoading ? (
-            Array.from({ length: selectedCategory === 'all' ? 8 : 4 }).map((_, idx) => (
+            Array.from({ length: 3 }).map((_, idx) => (
               <div
                 key={`menu-skeleton-${idx}`}
-                style={{
-                  animationDelay: `${idx * 40}ms`,
-                  animationFillMode: 'both'
-                }}
-                className="animate-fade-in-up bg-white/50 backdrop-blur-md border border-white/60 rounded-3xl overflow-hidden p-2 flex flex-col justify-between space-y-4 animate-pulse h-[360px]"
+                className="bg-white/50 backdrop-blur-md border border-white/60 rounded-3xl overflow-hidden p-2 flex flex-col justify-between space-y-4 animate-pulse h-[400px]"
               >
                 <div className="relative h-48 w-full bg-cream-200/50 rounded-2xl" />
                 <div className="p-4 flex-grow flex flex-col justify-between space-y-3">
@@ -170,30 +116,30 @@ export default function Menu() {
               </div>
             ))
           ) : (
-            filteredItems.map((item, index) => {
+            MENU_ITEMS.map((item, index) => {
               const platterCount = platter[item.id] || 0;
               return (
                 <div
                   key={item.id}
                   style={{
-                    animationDelay: `${index * 60}ms`,
+                    animationDelay: `${index * 80}ms`,
                     animationFillMode: 'both'
                   }}
-                  className="animate-fade-in-up group relative bg-white/50 backdrop-blur-md border border-white/60 hover:bg-white/90 hover:border-gold-300/30 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.015] transition-all duration-300 ease-out flex flex-col justify-between"
+                  className="animate-fade-in-up group relative bg-white/60 backdrop-blur-md border border-white/80 hover:bg-white/95 hover:border-gold-300/40 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02] transition-all duration-500 ease-out flex flex-col justify-between"
                   id={`menu-card-${item.id}`}
                 >
                   {/* Image and Badge Area */}
-                  <div className="relative h-48 w-full overflow-hidden bg-cream-50">
+                  <div className="relative h-56 w-full overflow-hidden bg-cream-100/40">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       referrerPolicy="no-referrer"
                     />
 
-                    {/* Subtle Steam Effect for Hot or Fresh Brewed Items */}
-                    {(item.tag === 'Crispy & Hot' || item.tag === 'Fresh Brewed' || item.tag === 'Signature Bake') && (
-                      <div className="absolute inset-x-0 bottom-0 pointer-events-none flex items-end justify-center pb-6 opacity-50 group-hover:opacity-85 transition-opacity z-10">
+                    {/* Subtle Steam Effect for Fresh Hot Items */}
+                    {(item.tag === 'Crispy & Hot' || item.tag === 'Sweet Delight' || item.tag === 'Signature Bake' || item.tag === 'Spicy Bite') && (
+                      <div className="absolute inset-x-0 bottom-0 pointer-events-none flex items-end justify-center pb-6 opacity-30 group-hover:opacity-75 transition-opacity z-10">
                         <div className="flex space-x-2 select-none">
                           <div className="w-0.5 bg-gradient-to-t from-white/30 to-transparent rounded-full h-12 steam-particle filter blur-[1.5px]" style={{ animationDelay: '0s' }} />
                           <div className="w-1 bg-gradient-to-t from-white/20 to-transparent rounded-full h-16 steam-particle filter blur-[2px]" style={{ animationDelay: '0.7s' }} />
@@ -218,7 +164,7 @@ export default function Menu() {
                     </div>
 
                     {/* Gourmet Gold Stamp Overlay */}
-                    {(item.id === 'special-tea' || item.id === 'layered-puffs' || item.id === 'uzhunnu-vada') && (
+                    {item.id === 'layered-puffs' && (
                       <div className="absolute top-3 right-3 bg-gradient-to-r from-amber-500 to-gold-500 text-charcoal-900 text-[9px] font-extrabold font-display px-2.5 py-1 rounded-xl uppercase tracking-widest shadow-md flex items-center gap-1 border border-amber-400/30 z-10 animate-pulse-slow">
                         <span>★</span>
                         <span>BESTSELLER</span>
@@ -233,9 +179,9 @@ export default function Menu() {
                   </div>
 
                   {/* Content Area */}
-                  <div className="p-5 flex-grow flex flex-col justify-between space-y-4">
-                    <div className="space-y-2">
-                      <h3 className="font-display font-bold text-lg text-charcoal-800 group-hover:text-gold-600 transition-colors">
+                  <div className="p-6 flex-grow flex flex-col justify-between space-y-4">
+                    <div className="space-y-3">
+                      <h3 className="font-display font-bold text-xl text-charcoal-800 group-hover:text-gold-600 transition-colors">
                         {item.name}
                       </h3>
                       <p className="font-sans text-xs text-charcoal-500 leading-relaxed min-h-[44px]">
@@ -245,10 +191,10 @@ export default function Menu() {
                       {/* Food Specific Specs */}
                       {item.ingredients && item.ingredients.length > 0 && (
                         <div className="space-y-1">
-                          <p className="text-[10px] uppercase font-bold tracking-wider text-charcoal-400">Main Ingredients</p>
+                          <p className="text-[9px] uppercase font-bold tracking-wider text-charcoal-400">Ingredients</p>
                           <div className="flex flex-wrap gap-1">
                             {item.ingredients.map((ing, i) => (
-                              <span key={i} className="text-[9.5px] bg-amber-50/80 text-amber-900 font-sans font-medium px-2 py-0.5 rounded-md border border-amber-200/40 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+                              <span key={i} className="text-[9.5px] bg-amber-50/80 text-amber-900 font-sans font-medium px-2 py-0.5 rounded-md border border-amber-200/40">
                                 {ing}
                               </span>
                             ))}
@@ -294,10 +240,10 @@ export default function Menu() {
                     </div>
 
                     {/* Add To Platter Action Button */}
-                    <div className="pt-2 flex items-center justify-between gap-2 border-t border-cream-100/80">
+                    <div className="pt-3 flex items-center justify-between gap-2 border-t border-cream-100/80">
                       <button
                         onClick={() => triggerCopyNotice(item.name)}
-                        className="font-sans font-medium text-xs text-gold-700 hover:text-charcoal-800 transition-colors cursor-pointer"
+                        className="font-sans font-bold text-xs text-gold-700 hover:text-charcoal-800 transition-colors cursor-pointer"
                       >
                         {copiedItem === item.name ? 'Link Ready!' : 'Recipe Info'}
                       </button>
@@ -325,7 +271,7 @@ export default function Menu() {
                       ) : (
                         <button
                           onClick={() => addToPlatter(item.id)}
-                          className="inline-flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-cream-50 border border-cream-200 text-charcoal-800 font-sans font-semibold text-xs hover:border-gold-500 hover:bg-gold-50 hover:text-gold-700 transition-all cursor-pointer focus:outline-none"
+                          className="inline-flex items-center space-x-1.5 px-4.5 py-2.5 rounded-xl bg-cream-50 border border-cream-200 text-charcoal-800 font-sans font-semibold text-xs hover:border-gold-500 hover:bg-gold-50 hover:text-gold-700 transition-all cursor-pointer focus:outline-none"
                         >
                           <Plus className="w-3.5 h-3.5" />
                           <span>Add To Platter</span>
@@ -342,7 +288,7 @@ export default function Menu() {
         {/* Copy confirmation dialog */}
         {copiedItem && (
           <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-charcoal-950 text-white font-sans text-xs py-3 px-6 rounded-2xl shadow-2xl border border-white/10 flex items-center space-x-2">
-            <CheckCircle2 className="w-4 h-4 text-gold-400" />
+            <Sparkles className="w-4 h-4 text-gold-400" />
             <span>Interested in {copiedItem}? Ask us about our preparation daily at 3:00 PM!</span>
           </div>
         )}
@@ -350,15 +296,15 @@ export default function Menu() {
         {/* Interactive Platter Builder Showcase Drawer (Only visible if item added) */}
         <div 
           id="platter-builder" 
-          className={`mt-16 bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl shadow-xl overflow-hidden transition-all duration-500 ${
-            platterTotalCount > 0 ? 'opacity-100 scale-100 max-h-[1000px] p-6 sm:p-8' : 'opacity-60 max-h-[100px] overflow-hidden p-6 text-center border-dashed'
+          className={`mt-16 bg-white/60 backdrop-blur-xl border border-white/80 rounded-3xl shadow-xl overflow-hidden transition-all duration-500 ${
+            platterTotalCount > 0 ? 'opacity-100 scale-100 max-h-[1000px] p-6 sm:p-8' : 'opacity-60 max-h-[100px] overflow-hidden p-6 text-center border-dashed border-white/40'
           }`}
         >
           {platterTotalCount > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
               {/* Platter Left Info */}
-              <div className="lg:col-span-5 space-y-4">
+              <div className="lg:col-span-5 space-y-4 text-left">
                 <div className="inline-flex items-center space-x-1.5 text-gold-700 bg-white/50 backdrop-blur-md border border-white/60 px-3 py-1 rounded-xl shadow-sm">
                   <ShoppingBag className="w-4 h-4" />
                   <span className="font-sans font-bold text-xs uppercase tracking-wider">Your Hot Tea Platter</span>
@@ -381,7 +327,7 @@ export default function Menu() {
               </div>
 
               {/* Platter Middle Dynamic List */}
-              <div className="lg:col-span-4 bg-white/30 backdrop-blur-md rounded-2xl p-5 border border-white/55 max-h-56 overflow-y-auto space-y-3">
+              <div className="lg:col-span-4 bg-white/30 backdrop-blur-md rounded-2xl p-5 border border-white/55 max-h-56 overflow-y-auto space-y-3 text-left">
                 <div className="flex items-center justify-between border-b border-cream-200 pb-2">
                   <span className="font-sans font-bold text-xs text-charcoal-500 uppercase tracking-wide">Platter Items</span>
                   <button 
@@ -412,16 +358,16 @@ export default function Menu() {
                   <p className="font-display font-extrabold text-4xl text-white mt-1">
                     ₹{platterSubtotal}
                   </p>
-                  <p className="font-sans text-[10px] text-cream-200/70 mt-1">Includes traditional fresh brewing taxes.</p>
+                  <p className="font-sans text-[10px] text-cream-200/70 mt-1">Includes traditional fresh brewing.</p>
                 </div>
 
-                <button
-                  onClick={() => scrollToSection('location')}
+                <a
+                  href="tel:+919447412345"
                   className="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-gold-500 hover:bg-gold-600 text-charcoal-800 font-sans font-bold text-sm transition-all duration-300 cursor-pointer shadow-md active:scale-95 group"
                 >
-                  <span>See Pickup Map</span>
+                  <span>Order via Phone</span>
                   <ChevronRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
 
             </div>
@@ -433,7 +379,7 @@ export default function Menu() {
               </p>
               <div className="flex items-center space-x-1.5 text-[11px] text-gold-600 font-semibold bg-gold-50 px-3 py-1 rounded-full border border-gold-100">
                 <TrendingUp className="w-3.5 h-3.5" />
-                <span>Special Tea + Uzhunnu Vada combination is highly recommended today!</span>
+                <span>Special Tea + Pazham Pori combination is highly recommended today!</span>
               </div>
             </div>
           )}
